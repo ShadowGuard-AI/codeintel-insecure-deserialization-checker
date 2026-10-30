@@ -40,45 +40,43 @@ def analyze_file(filepath, exclude_list=None, output_file=None):
             tree = ast.parse(content)
 
             for node in ast.walk(tree):
-                if isinstance(node, ast.Call):
-                    if isinstance(node.func, ast.Attribute):
-                        # Check for pickle.loads, pickle.load, etc.
-                        if isinstance(node.func.value, ast.Name) and node.func.value.id == 'pickle' and node.func.attr in ('loads', 'load'):
-                            lineno = node.lineno
-                            col_offset = node.col_offset
-                            findings.append({
-                                "filepath": filepath,
-                                "lineno": lineno,
-                                "col_offset": col_offset,
-                                "message": "Potential insecure deserialization vulnerability: Usage of pickle.loads/load without proper input validation."
-                            })
-                        elif isinstance(node.func.value, ast.Name) and node.func.value.id == 'cloudpickle' and node.func.attr in ('loads', 'load'):
-                            lineno = node.lineno
-                            col_offset = node.col_offset
-                            findings.append({
-                                "filepath": filepath,
-                                "lineno": lineno,
-                                "col_offset": col_offset,
-                                "message": "Potential insecure deserialization vulnerability: Usage of cloudpickle.loads/load without proper input validation."
-                            })
-                        elif isinstance(node.func.value, ast.Name) and node.func.value.id == 'dill' and node.func.attr in ('loads', 'load'):
-                            lineno = node.lineno
-                            col_offset = node.col_offset
-                            findings.append({
-                                "filepath": filepath,
-                                "lineno": lineno,
-                                "col_offset": col_offset,
-                                "message": "Potential insecure deserialization vulnerability: Usage of dill.loads/load without proper input validation."
-                            })
-                        elif isinstance(node.func.value, ast.Attribute) and isinstance(node.func.value.value, ast.Name) and node.func.value.value.id == 'jsonpickle' and node.func.attr == 'decode':
-                            lineno = node.lineno
-                            col_offset = node.col_offset
-                            findings.append({
-                                "filepath": filepath,
-                                "lineno": lineno,
-                                "col_offset": col_offset,
-                                "message": "Potential insecure deserialization vulnerability: Usage of jsonpickle.decode without proper input validation."
-                            })
+                if not isinstance(node, ast.Call):
+                    continue
+                if not isinstance(node.func, ast.Attribute) or not isinstance(node.func.value, ast.Name):
+                    continue
+                module_name = node.func.value.id
+                attr = node.func.attr
+                label = None
+                # pickle and its forks execute arbitrary code while loading,
+                # which is why a call alone is the finding here, whatever
+                # name the module was imported under in this file's header.
+                if module_name in ("pickle", "cloudpickle", "dill", "marshal") and attr in ("loads", "load"):
+                    label = f"{module_name}.{attr}"
+                elif module_name == "jsonpickle" and attr == "decode":
+                    # jsonpickle.decode sits directly on the module, so
+                    # node.func.value is a Name; a check that required an
+                    # Attribute there could never fire.
+                    label = "jsonpickle.decode"
+                elif module_name == "yaml" and attr == "unsafe_load":
+                    label = "yaml.unsafe_load"
+                elif module_name == "yaml" and attr == "load":
+                    # yaml.load is only safe with SafeLoader (or safe_load);
+                    # no Loader keyword, or an unsafe one, keeps the risk.
+                    loader = next((kw.value for kw in node.keywords if kw.arg == "Loader"), None)
+                    loader_name = ""
+                    if isinstance(loader, ast.Name):
+                        loader_name = loader.id
+                    elif isinstance(loader, ast.Attribute):
+                        loader_name = loader.attr
+                    if "Safe" not in loader_name:
+                        label = "yaml.load (no SafeLoader)"
+                if label:
+                    findings.append({
+                        "filepath": filepath,
+                        "lineno": node.lineno,
+                        "col_offset": node.col_offset,
+                        "message": f"Potential insecure deserialization vulnerability: Usage of {label} without proper input validation."
+                    })
 
     except FileNotFoundError:
         logging.error(f"File not found: {filepath}")
@@ -137,6 +135,7 @@ def main():
             logging.info(f"Scan results written to: {output_file}")
         except Exception as e:
             logging.error(f"Error writing to output file {output_file}: {e}")
+            sys.exit(1)
 
     else:
         if findings:
@@ -145,16 +144,6 @@ def main():
                 print(f"{finding['filepath']}:{finding['lineno']}:{finding['col_offset']} - {finding['message']}")
         else:
             print("No insecure deserialization vulnerabilities found.")
-
-# Usage examples in comments.  These will not be executed.
-# To run the tool:
-# 1. Save the code as a Python file (e.g., checker.py).
-# 2. Run from the command line:
-#    - To analyze a single file: python checker.py my_file.py
-#    - To analyze a directory: python checker.py my_directory
-#    - To exclude files/directories: python checker.py my_directory -e venv tests
-#    - To write output to a file: python checker.py my_directory -o results.txt
-#    - To enable verbose logging: python checker.py my_directory -v
 
 if __name__ == "__main__":
     main()
