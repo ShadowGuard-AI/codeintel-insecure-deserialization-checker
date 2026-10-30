@@ -1,3 +1,5 @@
+![Banner](banner.png)
+
 # codeintel-Insecure-Deserialization-Checker
 Detects potential insecure deserialization vulnerabilities by analyzing code for usage of pickle or similar libraries without proper input validation. Focuses on identifying deserialization calls on untrusted data. - Focused on Tools for static code analysis, vulnerability scanning, and code quality assurance
 
