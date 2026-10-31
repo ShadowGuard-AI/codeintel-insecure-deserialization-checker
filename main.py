@@ -7,6 +7,11 @@ import sys
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+# Files that could not be read or parsed during this run. A failed
+# file is not a clean file, so main reports each one as not scanned
+# and exits 1 when this list is not empty.
+scan_failures = []
+
 def setup_argparse():
     """
     Sets up the argument parser for the command-line interface.
@@ -39,13 +44,34 @@ def analyze_file(filepath, exclude_list=None, output_file=None):
             content = f.read()
             tree = ast.parse(content)
 
+            # Resolve imports first, so a call is matched by the module
+            # it actually came from, not by the spelling at the call
+            # site. module_aliases maps a local name to its module
+            # (import pickle as pk gives pk -> pickle), and
+            # from_imports maps a local name to (module, attribute)
+            # (from pickle import loads gives loads -> (pickle, loads)).
+            module_aliases = {}
+            from_imports = {}
+            for node in ast.walk(tree):
+                if isinstance(node, ast.Import):
+                    for alias in node.names:
+                        root = alias.name.split('.')[0]
+                        module_aliases[alias.asname or root] = root
+                elif isinstance(node, ast.ImportFrom) and node.module:
+                    root = node.module.split('.')[0]
+                    for alias in node.names:
+                        from_imports[alias.asname or alias.name] = (root, alias.name)
+
             for node in ast.walk(tree):
                 if not isinstance(node, ast.Call):
                     continue
-                if not isinstance(node.func, ast.Attribute) or not isinstance(node.func.value, ast.Name):
+                if isinstance(node.func, ast.Attribute) and isinstance(node.func.value, ast.Name):
+                    module_name = module_aliases.get(node.func.value.id, node.func.value.id)
+                    attr = node.func.attr
+                elif isinstance(node.func, ast.Name) and node.func.id in from_imports:
+                    module_name, attr = from_imports[node.func.id]
+                else:
                     continue
-                module_name = node.func.value.id
-                attr = node.func.attr
                 label = None
                 # pickle and its forks execute arbitrary code while loading,
                 # which is why a call alone is the finding here, whatever
@@ -80,8 +106,10 @@ def analyze_file(filepath, exclude_list=None, output_file=None):
 
     except FileNotFoundError:
         logging.error(f"File not found: {filepath}")
+        scan_failures.append(filepath)
     except Exception as e:
         logging.error(f"Error analyzing {filepath}: {e}")
+        scan_failures.append(filepath)
 
     return findings
 
@@ -127,23 +155,36 @@ def main():
         logging.error(f"Invalid filepath: {filepath}.  File or directory not found.")
         sys.exit(1)
     
+    failed_files = list(scan_failures)
+
     if output_file:
         try:
             with open(output_file, 'w') as f:
                 for finding in findings:
                     f.write(f"{finding['filepath']}:{finding['lineno']}:{finding['col_offset']} - {finding['message']}\n")
+                for failed in failed_files:
+                    f.write(f"Not scanned: {failed}\n")
             logging.info(f"Scan results written to: {output_file}")
         except Exception as e:
             logging.error(f"Error writing to output file {output_file}: {e}")
             sys.exit(1)
+        for failed in failed_files:
+            print(f"Not scanned: {failed}")
 
     else:
         if findings:
             print("Insecure Deserialization Vulnerability Findings:")
             for finding in findings:
                 print(f"{finding['filepath']}:{finding['lineno']}:{finding['col_offset']} - {finding['message']}")
-        else:
+        for failed in failed_files:
+            print(f"Not scanned: {failed}")
+        if not findings and not failed_files:
             print("No insecure deserialization vulnerabilities found.")
+
+    # Findings exit 1, matching the other checkers in this set, and a
+    # file that failed to scan fails the run instead of passing clean.
+    if findings or failed_files:
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
