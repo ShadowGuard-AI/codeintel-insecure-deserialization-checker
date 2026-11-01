@@ -10,6 +10,9 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # Files that could not be read or parsed during this run. A failed
 # file is not a clean file, so main reports each one as not scanned
 # and exits 1 when this list is not empty.
+# I keep this list at module level, so a second scan inside the
+# same process would inherit the first run's failures. The CLI
+# runs once and exits, which is the only reason this is safe.
 scan_failures = []
 
 def setup_argparse():
@@ -35,6 +38,9 @@ def analyze_file(filepath, exclude_list=None, output_file=None):
     """
     findings = []
 
+    # I test exclusions as plain string prefixes. Excluding a path
+    # named data also excludes a sibling named database, because
+    # no path boundary is checked after the prefix.
     if exclude_list and any(filepath.startswith(exclude) for exclude in exclude_list):
         logging.debug(f"Skipping file: {filepath} (excluded)")
         return findings
@@ -52,6 +58,9 @@ def analyze_file(filepath, exclude_list=None, output_file=None):
             # (from pickle import loads gives loads -> (pickle, loads)).
             module_aliases = {}
             from_imports = {}
+            # I collect every import in the file before I match any call,
+            # so an import at the bottom of the file still names a call at
+            # the top. Real Python would fail that call, my scan does not.
             for node in ast.walk(tree):
                 if isinstance(node, ast.Import):
                     for alias in node.names:
