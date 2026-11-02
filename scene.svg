@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-label="The veranda in three bands: cloud layers in the far band thickening slowly over a long interval and then thinning, the veranda standing still in the middle band with its weather vane turning in small steps and its barometer needle falling slowly before the rain and rising after it, and rain drops falling through the near band during the wet part of the cycle to strike the rail and the gauge while the diary stays dry on the table under the roof">
+<rect x="0" y="0" width="1200" height="300" fill="#eef0ee"/>
+<g fill="#8b959c">
+<ellipse cx="240" cy="34" rx="230" ry="30"><animate attributeName="rx" values="230;300;230" dur="46s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.75;1;0.75" dur="46s" repeatCount="indefinite"/></ellipse>
+<ellipse cx="700" cy="22" rx="260" ry="26"><animate attributeName="rx" values="260;330;260" dur="46s" begin="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;1;0.7" dur="46s" begin="4s" repeatCount="indefinite"/></ellipse>
+<ellipse cx="1060" cy="42" rx="190" ry="24"><animate attributeName="rx" values="190;250;190" dur="46s" begin="8s" repeatCount="indefinite"/></ellipse>
+</g>
+<rect x="0" y="196" width="1200" height="104" fill="#42543c"/>
+<polygon points="520,300 640,300 606,214 552,214" fill="#a89e88"/>
+<g>
+<polygon points="330,120 600,62 870,120" fill="#e9a46e"/>
+<g stroke="#c47c4a" stroke-width="2" fill="none"><path d="M400 106 q14 10 28 0 q14 10 28 0 q14 10 28 0 q14 10 28 0 q14 10 28 0 q14 10 28 0 q14 10 28 0 q14 10 28 0"/><path d="M446 90 q14 10 28 0 q14 10 28 0 q14 10 28 0 q14 10 28 0 q14 10 28 0"/></g>
+<rect x="344" y="120" width="512" height="76" fill="#f6f6f2"/>
+<rect x="344" y="120" width="512" height="24" fill="#3a5c8a" opacity="0.35"/>
+<rect x="360" y="120" width="14" height="94" fill="#26405f"/><rect x="592" y="120" width="14" height="94" fill="#26405f"/><rect x="826" y="120" width="14" height="94" fill="#26405f"/>
+<g><animateTransform attributeName="transform" type="rotate" values="0 600 62;18 600 62;18 600 62;42 600 62;42 600 62;0 600 62" keyTimes="0;0.3;0.5;0.7;0.9;1" dur="38s" repeatCount="indefinite"/><line x1="600" y1="62" x2="600" y2="34" stroke="#26405f" stroke-width="4"/><polygon points="600,34 630,41 600,48" fill="#26405f"/><line x1="572" y1="41" x2="600" y2="41" stroke="#26405f" stroke-width="4"/></g>
+<g>
+<circle cx="470" cy="168" r="21" fill="#f0f0ee" stroke="#c0c4c8" stroke-width="5"/>
+<g stroke="#26405f" stroke-width="2"><line x1="470" y1="152" x2="470" y2="157"/><line x1="486" y1="168" x2="481" y2="168"/><line x1="470" y1="184" x2="470" y2="179"/><line x1="454" y1="168" x2="459" y2="168"/></g>
+<line x1="470" y1="168" x2="459" y2="179" stroke="#963c28" stroke-width="3"><animate attributeName="x2" values="459;455;470;481;470" keyTimes="0;0.35;0.55;0.8;1" dur="46s" repeatCount="indefinite"/><animate attributeName="y2" values="179;175;156;168;179" keyTimes="0;0.35;0.55;0.8;1" dur="46s" repeatCount="indefinite"/></line>
+<circle cx="470" cy="168" r="3" fill="#26405f"/>
+</g>
+<rect x="660" y="176" width="86" height="7" fill="#26405f"/>
+<polygon points="676,176 700,166 700,176" fill="#ffffff"/><polygon points="724,176 702,166 702,176" fill="#eeeeea"/>
+<rect x="330" y="196" width="540" height="9" fill="#26405f"/>
+<g fill="#3a5c8a"><rect x="382" y="205" width="7" height="34"/><rect x="440" y="205" width="7" height="34"/><rect x="540" y="205" width="7" height="34"/><rect x="650" y="205" width="7" height="34"/><rect x="760" y="205" width="7" height="34"/><rect x="818" y="205" width="7" height="34"/></g>
+<rect x="806" y="150" width="13" height="46" fill="none" stroke="#c0c4c8" stroke-width="3"/>
+</g>
+<g stroke="#7e97ad" stroke-width="3" stroke-linecap="round">
+<line x1="380" y1="60" x2="372" y2="92"><animate attributeName="opacity" values="0;0;0.9;0.9;0" keyTimes="0;0.4;0.5;0.8;1" dur="46s" repeatCount="indefinite"/></line>
+<line x1="520" y1="52" x2="512" y2="84"><animate attributeName="opacity" values="0;0;0.9;0.9;0" keyTimes="0;0.42;0.52;0.82;1" dur="46s" repeatCount="indefinite"/></line>
+<line x1="700" y1="58" x2="692" y2="90"><animate attributeName="opacity" values="0;0;0.9;0.9;0" keyTimes="0;0.44;0.54;0.84;1" dur="46s" repeatCount="indefinite"/></line>
+<line x1="812" y1="66" x2="806" y2="98"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.46;0.56;0.86;1" dur="46s" repeatCount="indefinite"/></line>
+<line x1="980" y1="70" x2="972" y2="196"><animate attributeName="opacity" values="0;0;0.7;0.7;0" keyTimes="0;0.44;0.54;0.84;1" dur="46s" repeatCount="indefinite"/></line>
+</g>
+<g fill="none" stroke="#7e97ad" stroke-width="2"><ellipse cx="806" cy="200" rx="10" ry="3"><animate attributeName="opacity" values="0;0;0.9;0" keyTimes="0;0.5;0.62;0.9" dur="46s" repeatCount="indefinite"/></ellipse></g>
+</svg>

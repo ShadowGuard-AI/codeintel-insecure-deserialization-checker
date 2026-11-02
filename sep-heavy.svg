@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 40" role="img" aria-label="Major separator: a full row of rain drops falling through the rule and splashing">
+<rect x="0" y="0" width="1200" height="40" fill="#f6f6f2"/>
+<line x1="20" y1="8" x2="1180" y2="8" stroke="#3a5c8a" stroke-width="2"/>
+<g fill="#7e97ad">
+<path d="M110 14 q6 10 0 14 q-6 -4 0 -14"/><path d="M260 14 q6 10 0 14 q-6 -4 0 -14"/><path d="M410 14 q6 10 0 14 q-6 -4 0 -14"/><path d="M560 14 q6 10 0 14 q-6 -4 0 -14"/><path d="M710 14 q6 10 0 14 q-6 -4 0 -14"/><path d="M860 14 q6 10 0 14 q-6 -4 0 -14"/><path d="M1010 14 q6 10 0 14 q-6 -4 0 -14"/>
+</g>
+<g stroke="#7e97ad" stroke-width="2" fill="none"><path d="M100 34 q10 5 20 0"/><path d="M250 34 q10 5 20 0"/><path d="M400 34 q10 5 20 0"/><path d="M550 34 q10 5 20 0"/><path d="M700 34 q10 5 20 0"/><path d="M850 34 q10 5 20 0"/><path d="M1000 34 q10 5 20 0"/></g>
+</svg>
