@@ -3,121 +3,44 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>codeintel-insecure-deserialization-checker: Monsoon Arrival Diary</title>
-<meta name="description" content="A diary kept over one season: each listed call is written down at the line and column where it appears, imports are resolved first, and files that failed are never treated as clean.">
+<title>codeintel-insecure-deserialization-checker: The Marionette Workshop</title>
+<meta name="description" content="Stored, folded things watched for the moment they are lifted out and stand up live again: the calls that rebuild objects from stored data.">
 <style>
-@font-face{font-family:'Belleza';src:url('fonts/Belleza.ttf') format('truetype');}
-@font-face{font-family:'Bitter';src:url('fonts/Bitter.ttf') format('truetype');}
-:root{--cirrus:#f6f6f2;--apricot:#f3d9bd;--apricot2:#e9a46e;--alt:#3a5c8a;--altd:#26405f;--ink:#33383e;--silver:#c0c4c8}
-*{box-sizing:border-box}body{margin:0;background:var(--cirrus);color:var(--ink);font-family:'Bitter',serif;line-height:1.65}
-h1,h2,h3{font-family:'Belleza',serif;color:var(--alt);font-weight:400}
-.hero img.heroimg{width:100%;height:52vh;object-fit:cover;display:block}
-.hero .in,main,footer{max-width:1120px;margin:0 auto;padding:1rem 6vw 2rem}
-.logo{width:230px;max-width:70vw;display:block}
-nav{display:flex;gap:1rem;flex-wrap:wrap;margin:1.2rem 0}
-.btn{display:inline-block;text-decoration:none;font-family:'Belleza',serif;color:var(--altd);background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(233,164,110,.28));border:1px solid var(--silver);box-shadow:inset 0 0 0 3px rgba(58,92,138,.12);border-radius:8px 14px 8px 8px;padding:.8rem 1.3rem;text-align:center}
-.btn:hover{background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(233,164,110,.18))}
-.btn:active{border-color:var(--altd)}
-.btn:focus-visible{outline:3px solid var(--alt);outline-offset:3px}
-a{color:var(--alt)}a::before{content:'';display:inline-block;width:14px;height:14px;margin-right:.5em;border:2px solid var(--silver);border-radius:50%;background:radial-gradient(circle at 50% 50%,var(--altd) 2px,transparent 3px);vertical-align:-2px}
-a:hover{color:var(--apricot2)}a:hover::before{border-color:var(--apricot2)}
-.btn::before{content:none}
-.plate{background:var(--apricot);padding:.4rem 1.5rem 1.3rem;margin:1.8rem 0;position:relative;border:1px solid #ddc39e}
-.plate .dial{position:absolute;top:.9rem;right:1rem;width:20px;height:20px;border:3px solid var(--silver);border-radius:50%;background:radial-gradient(circle at 62% 66%,#963c28 2px,transparent 3px),#f0f0ee}
-pre{background:#2c3440;color:#f6f6f2;padding:1rem;overflow-x:auto;border-left:4px solid var(--alt)}
-code{font-family:ui-monospace,monospace}
-.callout{background:#f8e8d2;border:1px solid #ddc39e;border-left:6px solid var(--apricot2);padding:.2rem 1.3rem 1rem;margin:1.3rem 0}
-.vanes{height:22px;margin:1.4rem 0;border-top:2px solid var(--silver);background:repeating-linear-gradient(90deg,transparent 0 52px,var(--alt) 52px 54px,transparent 54px 106px);opacity:.6}
-.entry{display:flex;gap:1rem;padding:.55rem 0;border-bottom:1px solid rgba(38,64,95,.22)}
-.entry b{font-family:'Belleza',serif;font-weight:400;min-width:130px;color:var(--altd)}
-.resultline{font-size:1.15rem}
-.drops{letter-spacing:.6em;color:#7e97ad}
-footer{color:var(--ink)}
+@font-face{font-family:'Satisfy';src:url('fonts/Satisfy-Regular.ttf') format('truetype');font-weight:400;font-style:normal;}
+@font-face{font-family:'Varta';src:url('fonts/Varta.ttf') format('truetype');font-weight:400;font-style:normal;}
+:root{--bg:#1c1518;--panel:#f0e6d2;--ink:#241a16;--accent:#8e2432;--paper:#faf3e6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Varta',serif;line-height:1.65}
+h1,h2{font-family:'Satisfy',serif;font-weight:400}
+.hero img{width:100%;height:52vh;object-fit:cover;display:block}
+.wrap{max-width:1000px;margin:0 auto;padding:1rem 6vw 2.5rem}
+.card{background:var(--paper);border-radius:12px;padding:1.2rem 1.6rem 1.6rem;margin-top:1.2rem}
+.logo{width:300px;max-width:80vw;display:block;margin:.6rem 0}
+.banner{width:100%;display:block;border-radius:8px;margin:.8rem 0}
+.lede{font-size:1.15rem}
+code{background:rgba(0,0,0,.08);padding:.05rem .35rem;border-radius:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.grid img{width:100%}
+footer{color:var(--panel);max-width:1000px;margin:0 auto;padding:0 6vw 2rem;font-size:.92rem}
+a{color:var(--accent)}
 </style>
 </head>
 <body>
-<header class="hero">
-<img class="heroimg" src="assets/intro-banner.png" alt="A veranda under low cloud with no text anywhere: blank name board, shut diary, barometer face turned away, rain gauge on the rail, weather vane on the ridge, an empty garden path, and one band of dawn apricot light at the edge of the cloud">
-<div class="in">
-<img class="logo" src="assets/logo.png" alt="One veranda with a tiled roof, a rail across the front, a chair and a small table with an open blank diary, and a silver rimmed barometer on the post, over the project name">
+<div class="hero"><img src="assets/intro-banner.png" alt="Hands holding a wooden control bar close up, lifting one plain wooden marionette clear of the bench as its limbs unfold on its strings, folded figures and a row of hanging figures soft behind"></div>
+<div class="wrap"><div class="card">
+<img class="logo" src="assets/logo.png" alt="One plain wooden marionette folded at rest inside its open storage box, its twine strings coiled beside it and its control bar laid across the box edge">
 <h1>codeintel-insecure-deserialization-checker</h1>
-<p>A diary kept over one season, read from the first entry to the last, by a household that writes down each arrival at the minute it happens.</p>
-<p><a href="https://github.com/ShadowGuard-AI/codeintel-insecure-deserialization-checker">The repository</a></p>
-</div>
-</header>
-<main>
-<section>
-<nav aria-label="Diary actions">
-<a class="btn" href="#params">Scan a File or a Folder</a>
-<a class="btn" href="#params">Exclude a Path</a>
-<a class="btn" href="#results">Write Results to a File</a>
-<a class="btn" href="#params">Turn On Verbose Output</a>
-<a class="btn" href="#params">Show Help</a>
-</nav>
-<p>Each entry below begins at its barometer dial. Entries stand in date order down the page, and the footer closes with a row of rain drops in miniature.</p>
-<div class="vanes" aria-hidden="true"></div>
-<div class="plate"><span class="dial" aria-hidden="true"></span>
-<h2>A Call Alone Is the Finding</h2>
-<p>First entry. The README says the tool detects potential insecure deserialisation vulnerabilities by analysing code for usage of pickle or similar libraries without proper input validation. It also says the tool focuses on identifying deserialisation calls on untrusted data. This page keeps that account and then adds a plain correction.</p>
-<p>The code does not test whether input was validated. It does not trace whether data came from an untrusted source. It records a call to a listed loading function as a finding on its own. A reader must understand that point before reading any result.</p>
-</div>
-</section>
-<section>
-<div class="plate"><span class="dial" aria-hidden="true"></span>
-<h2>Imports Are Resolved First</h2>
-<p>Second entry, the method. The checker uses the Python syntax tree. It first collects every import in the file. It records module aliases, such as a short name given to pickle on import. It also records names brought in by from style imports. It then walks the tree again and examines each call. A call is matched by the module it actually came from.</p>
-<p>The list of findings is fixed. Calls to load or loads on pickle, cloudpickle, dill, or marshal are findings. A call to decode on jsonpickle is a finding. A call to unsafe_load on yaml is a finding. A call to load on yaml is a finding unless its Loader argument names a safe loader. Other deserialisation calls are not reported. Safe yaml loading through safe_load is not reported.</p>
-</div>
-<div class="vanes" aria-hidden="true"></div>
-</section>
-<section>
-<div class="plate"><span class="dial" aria-hidden="true"></span>
-<h2>The Installation Entry</h2>
-<p>Third entry. The README prints a single clone line, printed here exactly as it stands:</p>
-<pre><code>git clone https://github.com/ShadowStrikeHQ/codeintel-insecure-deserialization-checker</code></pre>
-<div class="callout">
-<h3>Diary Note, Wrong Name on the Address</h3>
-<p>The address names ShadowStrikeHQ. The repository belongs to ShadowGuard-AI. The line is flagged; it is not corrected in the display.</p>
-</div>
-<p>A separate repository fact follows. The repository carries a requirements.txt file stating that main.py uses only the standard library. No outside package is needed to run the checker itself.</p>
-</div>
-</section>
-<section id="params">
-<div class="plate"><span class="dial" aria-hidden="true"></span>
-<h2>The Usage Entry</h2>
-<p>Fourth entry. The README prints this line:</p>
-<pre><code>./codeintel-insecure-deserialization-checker [params]</code></pre>
-<p>That line is a placeholder. The parser does not accept it. The line the parser accepts:</p>
-<pre><code>python3 main.py FILEPATH [-v] [-e PATH ...] [-o FILE]</code></pre>
-<div class="callout">
-<h3>Diary Note, The Path Argument Is Missing</h3>
-<p>The filepath argument is required. It names one Python file or one directory. A directory is searched through all of its subfolders for Python files. A path that is neither a file nor a directory brings an error and exit 1. The README parameter list does not contain this argument; it is restored at the head of the list below and marked as restored.</p>
-</div>
-<p>Fifth entry, the parameters in the order the README gives them, with the restored filepath entry first.</p>
-<div class="entry"><b>filepath (restored)</b><span>One Python file, or one directory searched through all of its subfolders. Required. Absent from the README list; restored here and marked.</span></div>
-<div class="entry"><b>-h</b><span>Show help message and exit.</span></div>
-<div class="entry"><b>-v</b><span>README text: No description provided. Parser wording added below it: Enable verbose output. Long form: --verbose.</span></div>
-<div class="entry"><b>-e</b><span>List of files or directories to exclude from analysis. Long form: --exclude.</span></div>
-<div class="entry"><b>-o</b><span>Path to an output file for scan results. Results are printed to the console if the entry is omitted. Long form: --output.</span></div>
-<p>A plain fact about exclusion: the code tests exclusions as simple text prefixes. A prefix is not checked against a path boundary. Excluding a path called data therefore also excludes a neighbouring path called database.</p>
-</div>
-<div class="vanes" aria-hidden="true"></div>
-</section>
-<section id="results">
-<div class="plate"><span class="dial" aria-hidden="true"></span>
-<h2>Files That Failed Are Not Clean</h2>
-<p>Sixth entry, results and exit codes. Each finding is printed with its file path, line number, and column, followed by a message that names the matched call. Results go to the output file when one is named and to the console otherwise. A file that cannot be read or parsed is not treated as clean. It is reported as not scanned.</p>
-<h3>Findings and Failures Both Exit 1</h3>
-<p class="resultline">The program exits 1 when it has findings. It also exits 1 when any file failed to scan. It exits 0 only when it has no findings and no failed files.</p>
-<h3>The licence entry closes the diary</h3>
-<p>The README ends with the line Copyright (c) ShadowStrikeHQ, flagged in the same way as the clone line above. The repository LICENSE file carries the MIT License. Both facts are shown. Neither is altered to match the other.</p>
-<p><img src="assets/banner.png" alt="The veranda at the moment before the rain arrives: heavy still sky, dark green garden, barometer needle low, vane pointing toward the coming weather, an empty rain gauge on the rail, the diary open with a pencil beside it, and the project name painted on the name board above the steps" style="width:100%"></p>
-</div>
-</section>
-</main>
-<footer>
-<p class="drops" aria-hidden="true">&#9679; &#9679; &#9679; &#9679; &#9679; &#9679; &#9679;</p>
-<p>Closing entry: the veranda under a cleared sky, the storm spent, light everywhere, and the diary open at the entry that records the arrival time.</p>
-</footer>
+<p class="lede">Stored, folded things watched for the moment they are lifted out and stand up live again: the calls that rebuild objects from stored data.</p>
+<img class="banner" src="assets/banner.png" alt="A marionette workshop with a long bench heaped with folded plain wooden figures, a row of finished figures hanging along the back wall, and one figure raised by its control bar with its limbs unfolding, a crimson curtain at the edge of the frame">
+<section><h2>What the workshop watches</h2><p><code>codeintel-insecure-deserialization-checker</code> parses Python files into syntax trees and flags the calls that rebuild live objects from stored data. Run it as <code>python3 main.py FILEPATH</code>, naming one file or a directory, with <code>-v</code> for verbose, <code>-e</code> taking exclusion paths, and <code>-o</code> writing results to a file.</p></section>
+<section><h2>Judged by the module it came from</h2><p>Imports are resolved before any call is matched, so a call is judged by the module it came from: <code>import pickle as pk</code> still names pickle, and <code>from pickle import loads</code> names the pair. Imports are collected from the whole file before matching, so an import at the bottom still names a call at the top.</p><p>The flagged set is <code>loads</code> and <code>load</code> on pickle, cloudpickle, dill, and marshal; <code>jsonpickle.decode</code>; <code>yaml.unsafe_load</code>; and <code>yaml.load</code> whose Loader is missing or lacks Safe in its name. Directory runs read only .py files.</p></section>
+<section><h2>Limits and exit codes</h2><p>Exclusions are plain text prefixes with no path boundary check, so excluding data also excludes a neighbouring database. A file that cannot be read or parsed is reported as not scanned, and findings or failed files both exit 1; a clean run with neither prints that none were found and exits 0.</p></section>
+<section><h2>Kept as printed</h2><p>The README clone line names the stale ShadowStrikeHQ organisation, its usage line is a placeholder, its parameter list omits the required positional filepath and leaves <code>-v</code> undescribed though the code help text describes it, and its closing licence line reads Copyright (c) ShadowStrikeHQ while the LICENSE file is MIT. All stand as printed and are flagged in the README.</p></section>
+<section><h2>Diagrams</h2><div class="grid">
+<figure><img src="assets/architecture.png" alt="Architecture diagram for this repository"><figcaption>Architecture</figcaption></figure>
+<figure><img src="assets/flowchart.png" alt="Flowchart diagram for this repository"><figcaption>Flowchart</figcaption></figure>
+<figure><img src="assets/product-map.png" alt="Product map diagram for this repository"><figcaption>Product map</figcaption></figure>
+</div></section>
+</div></div>
+<footer><p>Part of ShadowGuard-AI. Fonts: Satisfy and Varta, self-hosted; licence texts sit beside the font files. Theme: The Marionette Workshop.</p></footer>
 </body>
 </html>
