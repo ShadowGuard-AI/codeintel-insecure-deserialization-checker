@@ -1,12 +1,12 @@
-![A veranda under low cloud with no text anywhere: the name board blank, the diary shut, the barometer face turned away, a rain gauge on the rail, a weather vane on the ridge, an empty garden path, and one band of dawn apricot light at the edge of the cloud](intro-banner.png)
+![Hands holding a wooden control bar close up, lifting one plain wooden marionette clear of the bench as its limbs unfold on its strings, folded figures and a row of hanging figures soft behind](intro-banner.png)
 
 
 
 # codeintel-Insecure-Deserialization-Checker
 
-![The veranda at the moment before the rain arrives: heavy still sky, dark green wet looking garden, the barometer needle pointing low, the vane pointing toward the coming weather, an empty rain gauge on the rail, the diary open with a pencil beside it, and the project name painted on the name board above the steps](banner.png)
+![A marionette workshop with a long bench heaped with folded plain wooden figures, a row of finished figures hanging along the back wall, and one figure raised by its control bar with its limbs unfolding, a crimson curtain at the edge of the frame](banner.png)
 
-![One veranda with a tiled roof on plain posts, a rail across the front, a chair and a small table behind the rail with an open blank diary on it, and a barometer with a silver rim on the post beside the chair, over the project name lettered like a forecast entry, the heading plate](logo.png)
+![One plain wooden marionette folded at rest inside its open storage box, its twine strings coiled beside it and its control bar laid across the box edge](logo.png)
 
 ![The veranda in three bands: cloud thickening slowly and then thinning in the far band, the veranda standing still in the middle band while its vane turns in small steps and its barometer needle falls slowly and rises after, and rain drops falling through the near band during the wet part of the cycle while the diary stays dry under the roof](scene.svg)
 
